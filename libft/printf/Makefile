@@ -13,12 +13,12 @@ HEADER = ft_printf.h
 all: $(NAME)
 
 $(NAME): $(OFILE)
-	ar rcs $(NAME) $(OFILE)
-
+	@printf "ft_printf compiling... "
+	@ar rcs $(NAME) $(OFILE)
+	@printf "\033[0;32mDone.\033[0m\n"
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
-
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OFILE)
