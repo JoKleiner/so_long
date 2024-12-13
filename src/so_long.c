@@ -6,12 +6,11 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:13:19 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/12 12:40:54 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/13 17:00:19 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <unistd.h>
 
 void	ft_hook(void *param)
 {
@@ -22,30 +21,30 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	if ((mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx,
-				MLX_KEY_W)) && data->image->instances[0].y > 30)
+				MLX_KEY_W)) && data->image->instances[0].y > 32)
 	{
-		data->image->instances[0].y -= 30;
+		data->image->instances[0].y -= 32;
 		moves++;
 		printf("%i", moves);
 	}
 	if ((mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx,
-				MLX_KEY_S)) && data->image->instances[0].y < data->height - 60)
+				MLX_KEY_S)) && data->image->instances[0].y < data->height - 64)
 	{
-		data->image->instances[0].y += 30;
+		data->image->instances[0].y += 32;
 		moves++;
 		printf("%i", moves);
 	}
 	if ((mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || mlx_is_key_down(data->mlx,
-				MLX_KEY_A)) && data->image->instances[0].x > 30)
+				MLX_KEY_A)) && data->image->instances[0].x > 32)
 	{
-		data->image->instances[0].x -= 30;
+		data->image->instances[0].x -= 32;
 		moves++;
 		printf("%i", moves);
 	}
 	if ((mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(data->mlx,
-				MLX_KEY_D)) && data->image->instances[0].x < data->width - 60)
+				MLX_KEY_D)) && data->image->instances[0].x < data->width - 64)
 	{
-		data->image->instances[0].x += 30;
+		data->image->instances[0].x += 32;
 		moves++;
 		printf("%i", moves);
 	}
@@ -75,9 +74,9 @@ int	set_ground(mlx_t *mlx_window, t_data *data)
 					y_coord) == -1)
 				return (mlx_delete_texture(ground_texture),
 					mlx_close_window(mlx_window), write(1, "Error\n", 6), 1);
-			x_coord = x_coord + 30;
+			x_coord = x_coord + 32;
 		}
-		y_coord = y_coord + 30;
+		y_coord = y_coord + 32;
 	}
 	return (mlx_delete_texture(ground_texture), 0);
 }
@@ -87,19 +86,41 @@ void	c(void)
 	system("leaks so_long");
 }
 
-int	main(void)
+void	free_map(char ***map)
 {
+	int	i;
+
+	i = 0;
+	while ((*map)[i])
+	{
+		free((*map)[i]);
+		i++;
+	}
+	free((*map));
+}
+
+int	main(int argc, char **argv)
+{
+	char			**map;
+	int				num_line;
 	mlx_texture_t	*thief_texture;
 	t_data			*data;
-	int				height;
-	int				width;
+	t_map			*map_size;
 
-	// atexit(c);
-	width = 450;
-	height = 300;
+	if (argc != 2)
+		return (write(1, "Error\n", 6), 1);
+	num_line = count_lines_init_map(&map, argv);
+	if (num_line == -1)
+		return (write(1, "Error\n", 6), 1);
+	if (map_check(&map, num_line, argv) == 1)
+		return (free_map(&map), write(1, "Error\n", 6), 1);
+	//atexit(c);
+	map_size = malloc(sizeof(t_map));
+	map_size->height = 10;
+	map_size->width = 12;
 	data = malloc(sizeof(t_data));
-	data->width = width;
-	data->height = height;
+	data->width = map_size->width * 32;
+	data->height = map_size->height * 32;
 	data->mlx = mlx_init(data->width, data->height, "MLX Window", true);
 	if (!data->mlx)
 		return (free(data), write(1, "Error\n", 6), 1);
@@ -128,6 +149,8 @@ int	main(void)
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	free(data);
+	free_map(&map);
+	free(map_size);
 	return (0);
 }
 

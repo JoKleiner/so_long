@@ -5,17 +5,20 @@ BUILD_DIR	= $(MLX42_DIR)/build
 
 LIBFT_DIR   = libft
 PRINTF_DIR  = $(LIBFT_DIR)/printf
-
+GET_NL_DIR	= $(LIBFT_DIR)/get_next_line
 SRC_DIR		= src
-SRCS		= $(SRC_DIR)/so_long.c
 
-OBJS = ${SRCS:.c=.o} ${PRINTF_DIR}/libftprintf.a
+SRCS		= $(SRC_DIR)/so_long.c $(SRC_DIR)/map_check.c $(SRC_DIR)/count_lines_init_map.c 
+SRCS_GET_NL	= $(GET_NL_DIR)/get_next_line.c $(GET_NL_DIR)/get_next_line_utils.c
+SRCS_LIBFT	= $(LIBFT_DIR)/ft_memcpy.c $(LIBFT_DIR)/ft_strjoin.c $(LIBFT_DIR)/ft_strlen.c
 
-NAME		= so_long
-HEADER 		= $(SRC_DIR)/so_long.h
-CC			= gcc
-CFLAGS		= -Wextra -Wall -Werror
-LDFLAGS		= -ldl -lglfw -lm -lpthread -L$(BUILD_DIR) -lmlx42 -I$(MLX42_DIR)
+OBJS = ${SRCS:.c=.o} ${SRCS_LIBFT:.c=.o} ${SRCS_GET_NL:.c=.o} ${PRINTF_DIR}/libftprintf.a
+
+NAME			= so_long
+HEADER 			= $(SRC_DIR)/so_long.h
+CC				= gcc
+CFLAGS			= -Wextra -Wall -Werror -fsanitize=address -g
+LDFLAGS			= -ldl -lglfw -lm -lpthread -L$(BUILD_DIR) -lmlx42 -I$(MLX42_DIR)
 
 all: printf $(NAME)
 
@@ -48,7 +51,7 @@ $(NAME): $(BUILD_DIR) $(OBJS)
 
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f ${SRCS:.c=.o}
+	rm -f ${SRCS:.c=.o} ${SRCS_LIBFT:.c=.o} ${SRCS_GET_NL:.c=.o}
 	@make -C ${PRINTF_DIR} -f Makefile clean
 
 fclean: clean
