@@ -8,7 +8,7 @@ PRINTF_DIR  = $(LIBFT_DIR)/printf
 GET_NL_DIR	= $(LIBFT_DIR)/get_next_line
 SRC_DIR		= src
 
-SRCS		= $(SRC_DIR)/so_long.c $(SRC_DIR)/map_check.c $(SRC_DIR)/count_lines_init_map.c 
+SRCS		= $(SRC_DIR)/so_long.c $(SRC_DIR)/map_check.c $(SRC_DIR)/count_lines_init_map.c $(SRC_DIR)/hero.c $(SRC_DIR)/ground.c
 SRCS_GET_NL	= $(GET_NL_DIR)/get_next_line.c $(GET_NL_DIR)/get_next_line_utils.c
 SRCS_LIBFT	= $(LIBFT_DIR)/ft_memcpy.c $(LIBFT_DIR)/ft_strjoin.c $(LIBFT_DIR)/ft_strlen.c
 
@@ -17,7 +17,8 @@ OBJS = ${SRCS:.c=.o} ${SRCS_LIBFT:.c=.o} ${SRCS_GET_NL:.c=.o} ${PRINTF_DIR}/libf
 NAME			= so_long
 HEADER 			= $(SRC_DIR)/so_long.h
 CC				= gcc
-CFLAGS			= -Wextra -Wall -Werror -fsanitize=address -g
+CFLAGS			= -Wextra -Wall -Werror
+#-fsanitize=address -g
 LDFLAGS			= -ldl -lglfw -lm -lpthread -L$(BUILD_DIR) -lmlx42 -I$(MLX42_DIR)
 
 all: printf $(NAME)

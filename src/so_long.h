@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:44:05 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/13 17:35:01 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/13 18:40:18 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,12 @@ typedef struct s_data
 	int			height;
 }				t_data;
 
-typedef struct s_map
-{
-	int			width;
-	int			height;
-}				t_map;
-
-void			ft_hook(void *param);
 int				set_ground(mlx_t *mlx_window, t_data *data);
 void			free_map(char ***map);
-//
+
 char			*get_next_line(int fd);
 int				ft_printf(const char *arg, ...);
-
+size_t			ft_strlen_n(const char *str);
 
 int				map_check(char ***map, int num_line, char **argv);
 int				check_pec(int i, size_t u, char ***map, int num_line);
@@ -52,6 +45,8 @@ int				surround_check(int i, int u, char **map2);
 int				count_lines_init_map(char ***map, char **argv);
 int				init_map(char ***map, char **argv, int num_line);
 
-size_t				ft_strlen_n(const char *str);
+int				hero(t_data *data);
+void			hero_move(void *param);
+int				hero_move2(void *param, int moves);
 
 #endif
