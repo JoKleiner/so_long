@@ -8,7 +8,7 @@ PRINTF_DIR  = $(LIBFT_DIR)/printf
 GET_NL_DIR	= $(LIBFT_DIR)/get_next_line
 SRC_DIR		= src
 
-SRCS		= $(SRC_DIR)/so_long.c $(SRC_DIR)/map_check.c $(SRC_DIR)/count_lines_init_map.c $(SRC_DIR)/hero.c $(SRC_DIR)/ground.c
+SRCS		= $(SRC_DIR)/so_long.c $(SRC_DIR)/map_check.c $(SRC_DIR)/count_lines_init_map.c $(SRC_DIR)/hero.c $(SRC_DIR)/start_image.c $(SRC_DIR)/utils.c
 SRCS_GET_NL	= $(GET_NL_DIR)/get_next_line.c $(GET_NL_DIR)/get_next_line_utils.c
 SRCS_LIBFT	= $(LIBFT_DIR)/ft_memcpy.c $(LIBFT_DIR)/ft_strjoin.c $(LIBFT_DIR)/ft_strlen.c
 

@@ -6,28 +6,24 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:13:19 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/13 18:56:16 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/16 17:42:40 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	c(void)
+int	init_win(t_data *data, int num_line, char **map)
 {
-	system("leaks so_long");
-}
-
-void	free_map(char ***map)
-{
-	int	i;
-
-	i = 0;
-	while ((*map)[i])
-	{
-		free((*map)[i]);
-		i++;
-	}
-	free((*map));
+	data->width = ft_strlen_n(map[0]) * 32;
+	if (data->width > 2528)
+		return (free(data), write(1, "Error\n", 6), 1);
+	data->height = num_line * 32;
+	if (data->height > 1312)
+		return (free(data), write(1, "Error\n", 6), 1);
+	data->mlx = mlx_init(data->width, data->height, "MLX Window", true);
+	if (!data->mlx)
+		return (free(data), write(1, "Error\n", 6), 1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -43,17 +39,16 @@ int	main(int argc, char **argv)
 		return (write(1, "Error\n", 6), 1);
 	if (map_check(&map, num_line, argv) == 1)
 		return (free_map(&map), write(1, "Error\n", 6), 1);
-	// atexit(c);
 	data = malloc(sizeof(t_data));
-	data->width = ft_strlen_n(map[0]) * 32;
-	data->height = num_line * 32;
-	data->mlx = mlx_init(data->width, data->height, "MLX Window", true);
-	if (!data->mlx)
-		return (free(data), write(1, "Error\n", 6), 1);
-	if (set_ground(data->mlx, data) == 1)
-		return (free(data), write(1, "Error\n", 6), 1);
-	if (hero(data) == 1)
+	if (init_win(data, num_line, map) == 1)
 		return (1);
+	if (set_start_image(data, &map, num_line) == 1)
+		return (mlx_close_window(data->mlx), free(data), write(1, "Error\n", 6),
+			1);
+	if (hero(data, &map) == 1)
+		return (1);
+	data->map = &map;
+	data->end = 0;
 	mlx_loop_hook(data->mlx, hero_move, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
@@ -62,4 +57,5 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+// atexit(c);
 // system("leaks so_long");

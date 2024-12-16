@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:44:05 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/13 18:40:18 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/16 16:05:48 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ typedef struct s_data
 	mlx_image_t	*image;
 	int			width;
 	int			height;
+	char		***map;
+	int			x;
+	size_t		y;
+	int			end;
 }				t_data;
 
-int				set_ground(mlx_t *mlx_window, t_data *data);
+// int				set_ground(t_data *data);
 void			free_map(char ***map);
 
 char			*get_next_line(int fd);
@@ -45,8 +49,13 @@ int				surround_check(int i, int u, char **map2);
 int				count_lines_init_map(char ***map, char **argv);
 int				init_map(char ***map, char **argv, int num_line);
 
-int				hero(t_data *data);
+int				set_start_image(t_data *data, char ***map, int num_line);
+
+int				hero(t_data *data, char ***map);
 void			hero_move(void *param);
-int				hero_move2(void *param, int moves);
+
+int				set_ground(t_data *data);
+int				set_hero(t_data *data);
+int	find_c(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:00:13 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/13 17:36:10 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/16 16:41:38 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	put_p(char **map2)
 	int	u;
 
 	changes = 0;
-	i = 1;
-	while (map2[i + 1])
+	i = 0;
+	while (map2[i])
 	{
-		u = 1;
-		while (map2[i][u + 1] != '\n')
+		u = 0;
+		while (map2[i][u])
 		{
 			if (surround_check(i, u, map2) == 1)
 			{

@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:39:36 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/13 17:35:38 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:18:26 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_doable(char **argv, int num_line)
 	return (0);
 }
 
-int	check_10PCE(int i, int u, char ***map)
+int	check_10pce(int i, int u, char ***map)
 {
 	if ((*map)[i][u] == 'C')
 		return (0);
@@ -73,7 +73,7 @@ int	check_pec(int i, size_t u, char ***map, int num_line)
 				exit++;
 			if ((*map)[i][u] == 'C')
 				collec++;
-			if (check_10PCE(i, u, map) == 1)
+			if (check_10pce(i, u, map) == 1)
 				return (1);
 			u++;
 		}
