@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 18:54:44 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/16 15:09:03 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 10:07:49 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int	set_ground(t_data *data)
 
 	texture = mlx_load_png("images/Ground.png");
 	if (!texture)
-		return (write(1, "Error\n", 6), 1);
+		return (ft_printf("Error\nGround: png to texture went wrong"), 1);
 	data->image = mlx_texture_to_image(data->mlx, texture);
 	if (!data->image)
-		return (mlx_delete_texture(texture), write(1, "Error\n", 6), 1);
+		return (mlx_delete_texture(texture),
+			ft_printf("Error\nGround: texture to image went wrong"), 1);
 	if (-1 == mlx_image_to_window(data->mlx, data->image, data->y * 32, data->x
 			* 32))
 		return (mlx_delete_texture(texture), write(1, "Error\n", 6), 1);

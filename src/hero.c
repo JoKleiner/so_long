@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 18:25:20 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/16 17:32:20 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/16 18:02:31 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	set_hero(t_data *data)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png("images/Prisoner.png");
+	texture = mlx_load_png("images/Prisoner2.png");
 	if (!texture)
 		return (mlx_close_window(data->mlx), free(data), write(1, "Error\n", 6),
 			1);

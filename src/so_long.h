@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:44:05 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/16 16:05:48 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 09:53:13 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_data
 	int			end;
 }				t_data;
 
-// int				set_ground(t_data *data);
+
 void			free_map(char ***map);
 
 char			*get_next_line(int fd);
@@ -56,6 +56,6 @@ void			hero_move(void *param);
 
 int				set_ground(t_data *data);
 int				set_hero(t_data *data);
-int	find_c(t_data *data);
+int				find_c(t_data *data);
 
 #endif
