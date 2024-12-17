@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:13:19 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 13:15:19 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:06:35 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	init_game(t_data *data, int num_line, char **map)
 	if (!data->mlx)
 		return (ft_printf("Error\nmlx init went wrong"), 1);
 	if (set_start_image(data, &map, num_line) == 1)
-		return (close_func(data, map), 1);
+		return (mlx_close_window(data->mlx), mlx_terminate(data->mlx), 1);
 	if (hero(data, &map) == 1)
-		return (close_func(data, map), 1);
+		return (mlx_close_window(data->mlx), mlx_terminate(data->mlx), 1);
 	return (0);
 }
 

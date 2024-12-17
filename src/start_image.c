@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 18:54:44 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 10:43:20 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:03:11 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	set_image(t_data *data, char ***map, int num_line)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png("images/Ground.png");
+	if ((*map)[data->x][data->y] == 'P' || (*map)[data->x][data->y] == '0')
+		texture = mlx_load_png("images/Ground.png");
 	if ((*map)[data->x][data->y] == '1' && (data->x == 0 || data->x == num_line
 			- 1 || data->y == 0 || data->y == ft_strlen_n((*map)[0]) - 1))
 	{

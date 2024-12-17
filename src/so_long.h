@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:44:05 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 12:23:45 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 14:06:20 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int				hero_le_ri(void *param, int moves);
 // Utils
 int				find_c(t_data *data);
 void			free_map(char ***map);
-void			close_func(t_data *data, char **map);
+// void			c(void);
 
 #endif
