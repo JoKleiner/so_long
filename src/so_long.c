@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:13:19 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 13:06:14 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 13:15:19 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx, hero_move, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
-	
 	free(data);
 	free_map(&map);
 	return (0);
