@@ -21,10 +21,10 @@ $(NAME): $(OFILE)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OFILE)
+	@rm -f $(OFILE)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 
 re: fclean $(NAME)

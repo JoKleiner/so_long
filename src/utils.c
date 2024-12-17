@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:25:20 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 09:52:04 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 11:10:40 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ void	free_map(char ***map)
 		i++;
 	}
 	free((*map));
+}
+
+void	close_func(t_data *data, char **map)
+{
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
+	free(data);
+	free_map(&map);
 }
 
 // void	c(void)

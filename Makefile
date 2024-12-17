@@ -32,33 +32,45 @@ $(MLX42_DIR):
 	@printf "\033[0;32mDone.\033[0m\n"
 	
 $(BUILD_DIR): $(MLX42_DIR)
-	@printf "Configuring MLX42 & cmake -B build... "
+	@printf "Configuring MLX42 & cmake... "
 	@cd $(MLX42_DIR) && cmake -B build > /dev/null
 	@printf "\033[0;32mDone.\033[0m\n"
-	@printf "Building MLX42 library & cmake --build build -j4... "
+	@printf "Building MLX42 library & cmake... "
 	@cd $(MLX42_DIR) && cmake --build build -j4 > /dev/null
 	@printf "\033[0;32mDone.\033[0m\n"
-
+	
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	@printf "Compiling $<... "
 	@$(CC) $(CFLAGS) -I$(MLX42_DIR) -c $< -o $@ > /dev/null
-	@printf "\033[0;32mDone.\033[0m\n"
+
+$(LIBFT_DIR)/%.o: $(LIBFT_DIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null
+
+$(GET_NL_DIR)/%.o: $(GET_NL_DIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null
 
 $(NAME): $(BUILD_DIR) $(OBJS)
+	@printf "Compiling SRC/Libft/Get_NL... "
+	@printf "\033[0;32mDone.\033[0m\n"
 	@printf "Linking $(NAME)... "
 	@$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME) > /dev/null
 	@printf "\033[0;32mDone.\033[0m\n"
 	@printf "\033[0;32mso_long successfully built!\033[0m\n"
 
 clean:
-	rm -rf $(BUILD_DIR)
-	rm -f ${SRCS:.c=.o} ${SRCS_LIBFT:.c=.o} ${SRCS_GET_NL:.c=.o}
+	@printf "Remove MLX build... "
+	@rm -rf $(BUILD_DIR)
+	@printf "\033[0;31mRemoved.\033[0m\n"
+	@printf "Remove o-files... "
+	@rm -f ${SRCS:.c=.o} ${SRCS_LIBFT:.c=.o} ${SRCS_GET_NL:.c=.o}
 	@make -C ${PRINTF_DIR} -f Makefile clean
+	@printf "\033[0;31mRemoved.\033[0m\n"
 
 fclean: clean
-	rm -f so_long
+	@printf "Remove so_long, MLX42... "
+	@rm -f so_long
 	@make -C ${PRINTF_DIR} -f Makefile fclean
-	rm -rf $(MLX42_DIR)
+	@rm -rf $(MLX42_DIR)
+	@printf "\033[0;31mRemoved.\033[0m\n"
 
 re: fclean all
 

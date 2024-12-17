@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 18:25:20 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/16 18:02:31 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 11:06:07 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	hero_move(void *param)
 		mlx_close_window(data->mlx);
 	if ((*data->map)[data->x][data->y] == 'C')
 	{
-		if (set_ground(data) == 1)
-			return ;
-		if (set_hero(data) == 1)
-			return ;
+		if (set_ground(data) == 1 || set_hero(data) == 1)
+			mlx_close_window(data->mlx);
 		(*data->map)[data->x][data->y] = '0';
 	}
 	if ((*data->map)[data->x][data->y] == 'E')
@@ -95,17 +93,14 @@ int	set_hero(t_data *data)
 
 	texture = mlx_load_png("images/Prisoner2.png");
 	if (!texture)
-		return (mlx_close_window(data->mlx), free(data), write(1, "Error\n", 6),
-			1);
+		return (ft_printf("Error\nPng to texture went wrong"), 1);
 	data->image = mlx_texture_to_image(data->mlx, texture);
+	mlx_delete_texture(texture);
 	if (!data->image)
-		return (mlx_close_window(data->mlx), mlx_delete_texture(texture),
-			free(data), write(1, "Error\n", 6), 1);
+		return (ft_printf("Error\nTexture to image went wrong"), 1);
 	if (-1 == mlx_image_to_window(data->mlx, data->image, data->y * 32, data->x
 			* 32))
-		return (mlx_close_window(data->mlx), free(data), write(1, "Error\n", 6),
-			1);
-	mlx_delete_texture(texture);
+		return (ft_printf("Error\nImage to window went wrong"), 1);
 	return (0);
 }
 
