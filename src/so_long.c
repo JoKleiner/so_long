@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:13:19 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 14:06:35 by joklein          ###   ########.fr       */
+/*   Updated: 2025/01/03 11:02:48 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	init_game(t_data *data, int num_line, char **map)
 {
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	data->width = ft_strlen_n(map[0]) * 32;
 	if (data->width > 2528)
 		return (ft_printf("Error\nMap width to big"), 1);

@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:39:36 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 13:45:47 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/17 18:08:55 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	map_check(char ***map, int num_line, char **argv)
 	while ((*map)[0][u] != '\n')
 	{
 		if ((*map)[0][u] != '1' || (*map)[num_line - 1][u] != '1')
-			return (1);
+			return (ft_printf("Error\nMap not closed"), 1);
 		u++;
 	}
 	return (0);

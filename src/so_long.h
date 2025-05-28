@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:44:05 by joklein           #+#    #+#             */
-/*   Updated: 2024/12/17 14:06:20 by joklein          ###   ########.fr       */
+/*   Updated: 2024/12/18 10:34:09 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ typedef struct s_data
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	mlx_image_t	*image_hero;
 	int			width;
 	int			height;
 	char		***map;
-	int			x;
-	size_t		y;
+	size_t		x;
+	int			y;
 	int			end;
 }				t_data;
 
@@ -64,6 +65,8 @@ int				hero_le_ri(void *param, int moves);
 // Utils
 int				find_c(t_data *data);
 void			free_map(char ***map);
+int				set_win(t_data *data);
+void			step_on_c(t_data *data);
 // void			c(void);
 
 #endif
