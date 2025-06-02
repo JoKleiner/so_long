@@ -15,12 +15,12 @@ Map loaded from .ber file<br/>
 2D graphics with MiniLibX<br/>
 Input handling and step counter<br/>
 
-🛠️ Compile & Run
+**Compile & Run:**
 
-make
-./so_long maps/map1.ber
+    make
+    ./so_long maps/map1.ber
 
-🧠 Learned
+**Learned:**
 
     Drawing with MiniLibX
 
