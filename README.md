@@ -18,14 +18,10 @@ Input handling and step counter<br/>
 **Compile & Run:**
 
     make
-    ./so_long maps/map1.ber
+    ./so_long maps/map_laby.ber
 
-**Learned:**
-
-    Drawing with MiniLibX
-
-    Parsing maps and validating input
-
-    Handling movement and collisions
-
-    Writing clean and leak-free C code
+**Learned:**<br/>
+Drawing with MiniLibX<br/>
+Parsing maps and validating input<br/>
+Handling movement and collisions<br/>
+Writing clean and leak-free C code<br/>
