@@ -16,6 +16,7 @@ Map includes: 1 = wall, 0 = floor, P = player, C = item, E = exit<br/>
 Map loaded from .ber file<br/>
 2D graphics with MiniLibX<br/>
 Input handling and step counter<br/>
+Collision detection with walls<br/>
 
 **Compile & Run:**
 
