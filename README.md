@@ -1,4 +1,4 @@
-#so_long – 42 Project
+# so_long – 42 Project
 **About:**<br/>
 so_long is a small 2D game made with C and MiniLibX.<br/>
 The goal: collect all items and reach the exit.<br/>
