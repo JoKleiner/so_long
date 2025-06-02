@@ -17,8 +17,7 @@ Input handling and step counter<br/>
 
 **Compile & Run:**
 
-    make
-    ./so_long maps/map_laby.ber
+    make && ./so_long maps/map_laby.ber
 
 **Learned:**<br/>
 Drawing with MiniLibX<br/>
